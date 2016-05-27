@@ -12,6 +12,7 @@ from Queue import Queue
 import shutil
 import uuid
 import wave
+import codecs
 
 from gentle.paths import get_resource, get_datadir
 from gentle.transcription import to_csv, MultiThreadedTranscriber
@@ -89,7 +90,7 @@ class Transcriber():
         outdir = os.path.join(self.data_dir, 'transcriptions', uid)                
 
         tran_path = os.path.join(outdir, 'transcript.txt')
-        with open(tran_path, 'w') as tranfile:
+        with codecs.open(tran_path, 'w', 'utf-8') as tranfile:
             tranfile.write(transcript)
         audio_path = os.path.join(outdir, 'upload')
         with open(audio_path, 'w') as wavfile:
